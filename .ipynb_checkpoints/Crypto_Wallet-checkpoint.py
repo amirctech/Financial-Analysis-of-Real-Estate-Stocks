@@ -2,7 +2,7 @@
 
 import os
 import requests
-from dotenv import load-dotenv
+from dotenv import load_dotenv
 
 load_dotenv()
 from bip44 import Wallet
@@ -14,7 +14,7 @@ from web3.gas_strategies.time_based import medium_gas_price_strategy
 
 # Wallet functionality
 
-def generate_account()
+def generate_account():
     # Fetch mnemonic from environment variable
     mnemonic = os.getenv("MNEMONIC")
 
