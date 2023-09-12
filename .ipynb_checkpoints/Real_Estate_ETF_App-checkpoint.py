@@ -3,7 +3,7 @@ import pandas as pd
 
 # Load your CSV data
 icf_returns_df = pd.read_csv("ICF_Cumulative_Df.csv")
-icf_aglo_evaluation_df = pd.read_csv("Algo_Evaluation_Df.csv")
+icf_aglo_evaluation_df = pd.read_csv("ICF_Algo_Evaluation_Df.csv")
 
 # Define ETFs and their details
 etf_database = {
@@ -52,6 +52,11 @@ def main():
         st.write(f"Financial Analysis for {etf_details['Name']}")
         st.table(icf_aglo_evaluation_df)
         st.line_chart(icf_returns_df)
+    elif st.button("Show Financial Analysis")
+        st.write(f"Financial Analysis for {etf_details['Name']}")
+        st.table(icf_aglo_evaluation_df)
+        st.line_chart(icf_returns_df)
+        
 
 if __name__ == "__main__":
     main()
