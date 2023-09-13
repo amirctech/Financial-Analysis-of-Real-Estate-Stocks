@@ -100,7 +100,6 @@ def main():
     
     # Write the total shares in Ether
     st.sidebar.markdown("## Total Shares in Ether")
-    
-    
+
 if __name__ = "__main__":
     main()
