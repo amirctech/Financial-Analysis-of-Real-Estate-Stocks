@@ -37,11 +37,7 @@ etfs = list(etf_database.keys())
 
 # Streamlit app
 def main():
-    # Streamlit application headings
-    st.markdown("# RealEstateETFApp")
-    st.markdown("## Invest In Real Estate ETFs")
-    st.text(" \n")
-   
+    st.title("ETF Analysis")
     
     # Display ETF details
     selected_etf = st.selectbox("Select an ETF", etfs)
@@ -63,6 +59,11 @@ def main():
             st.table(corn_algo_evaluation_df)
             st.line_chart(corn_returns_df)
         
+    # Streamlit application headings
+    st.markdown("# RealEstateETFApp")
+    st.markdown("## Invest In Real Estate ETFs")
+    st.text(" \n")
+    
     # Streamlit Sidebar Code - Start
     st.sidebar.markdown("## ETF Account Addresses & Ethernet Balance in Ether")
     
