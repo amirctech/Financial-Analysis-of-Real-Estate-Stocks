@@ -1,5 +1,10 @@
 import streamlit as st
 import pandas as pd
+from Crypto_Wallet import *
+from typing import Any, List
+from web3 import Web3
+
+w3 = Web3(Web3.HTTPProvider("HTTP://127.0.0.1:7545"))
 
 # Load your CSV data
 icf_returns_df = pd.read_csv("ICF_Cumulative_Df.csv")
@@ -67,15 +72,18 @@ def main():
     st.sidebar.markdown("## ETF Account Addresses & Ethernet Balance in Ether")
     
     # Call the 'generate_account' function and save it as the variable 'account'
-    # Define the generate_account function here if it's missing
+    account = generate_account()
     
     # Write the client's Ethereum account address to the sidebar
     # Use the 'account' variable
+    st.sidebar.write(account.address)
     
     # Call the 'get_balance' function and pass it your account address
     # Write the returned ether balance to the sidebar
     # Use the 'balance' variable
-    
+    balance = get_balance(w3,account.address)
+    st.sidebar.write(balance)
+
     # Create a select box to choose a Real Estate ETF
     selected_etf_sidebar = st.sidebar.selectbox("Select a Real Estate ETF", etfs)
     
