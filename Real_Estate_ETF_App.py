@@ -113,5 +113,23 @@ def main():
     # Write the total shares in Ether
     st.sidebar.markdown("## Total Shares in Ether")
 
+    # Calcualte total shares in eth for the ETF
+    total = etf_details["Closing Price"] * shares
+    
+    #Write the 'total' calculation to the Streamlit sidebar
+    st.sidebar.write(total)
+    
+    # Save the transaction hash that the 'send_transaction' function returns as a variable and have it display on the application's web interface
+    if st.sidebar.button("Send Transaction"):
+        
+        # Call the send_transaction function and pass it the necessary parameters
+        transaction_hash = send_transaction(w3, account, etfs_address, total)
+        
+        # Markdown for the transaction hash
+        st.sidebar.markdown("#### Validated Transaction Hash")
+        
+        # Write the returned transaction hash to the screen
+        st.sidebar.write(transaction_hash)
+    
 if __name__ == "__main__":
     main()
