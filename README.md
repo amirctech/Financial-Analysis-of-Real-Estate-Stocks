@@ -33,6 +33,7 @@ The dashboard provides a brief selection of critical metrics that are useful in 
 - confusion_matrix
 - accuracy_score
 - classification_report
+- Streamlit
 
 ## Requirements
 To use this script, you will need to have Python installed along with the libraries mentioned above. 
