@@ -8,10 +8,28 @@
 
 ## Description
 
-Financial Analysis in Real Estate Stocks project focused on computing algorithmic returns for three real estate stocks. The team researched the 3 best real estate stocks in the agriculture, commercial and housing industry and pulled the ticker data from Alpaca APIs. Utilizing machine learning models such as Logistic Regression and Single Moving Averages, the team aimed for the best accuracy, precision, and f-1 score in the confusion matrix to establish a buy/sell signal. With the signal, the team computed algorithmic returns for each of the real estate stocks and ensured it outperformed the actual returns. We then calculated portfolio evaluation metrics for each of the real estate stocks to ensure users can make a sound investment decision. After completing the financial analysis, the team created the crypto wallet using Web3 and a streamlit app for users to select, visualize the returns, and invest in the real estate stocks via Ethereum.
+Financial Analysis in Real Estate Stocks project focused on computing algorithmic returns for three real estate stocks. The team researched the 3 best real estate stocks in the agriculture, commercial and housing industry and pulled the ticker data from Alpaca APIs. Utilizing machine learning models such as Logistic Regression and Single Moving Averages, the team aimed for the best accuracy. With the signal, the team computed algorithmic returns for each of the real estate stocks and ensured it outperformed the actual returns. We then calculated portfolio evaluation metrics for each of the real estate stocks to ensure users can make a sound investment decision. After completing the financial analysis, the team created the crypto wallet using Web3 and a streamlit app for users to select, visualize the returns, and invest in the real estate stocks via Ethereum.
 
 The tool provides a mechanism for users to create financial analysis of real estate stocks to visualize and invest on a Streamlit using cryptocurrency.
 
+The Financial Analysis in Real Estate Stocks project is dedicated to delivering comprehensive insights and investment opportunities in the real estate market. The project revolves around the computation of algorithmic returns for three carefully chosen real estate stocks, each representing a distinct sector: agriculture, commercial, and housing. This initiative combines data-driven analysis, machine learning, and blockchain technology to empower investors with valuable tools and information.
+
+**Key Project Highlights:**
+
+-  **Stock Selection and Data Retrieval:** Our team diligently researched and identified the top-performing real estate stocks within the agriculture, commercial, and housing industries. To facilitate accurate analysis, we sourced historical stock data through Alpaca APIs, ensuring a reliable foundation for our calculations.
+
+-  **Machine Learning for Buy/Sell Signals:** Leveraging advanced machine learning models, including Logistic Regression and Single Moving Averages, we aimed for precision, accuracy, and a high F1 score in the confusion matrix. This enabled us to establish clear buy/sell signals, providing users with valuable insights for investment decisions.
+
+- **Algorithmic Returns Analysis:** With robust buy/sell signals in place, our team computed algorithmic returns for each of the selected real estate stocks. Our objective was to surpass the performance of actual returns, offering investors a competitive advantage in their portfolios.
+
+- **Portfolio Evaluation Metrics:** To ensure that users can make informed investment decisions, we calculated a range of portfolio evaluation metrics. These metrics encompass annualized return, cumulative returns, annual volatility, Sharpe ratio, and Sortino ratio, providing a comprehensive view of each real estate stock's performance.
+
+- **Cryptocurrency Integration:** As an extension of traditional investment avenues, we embraced the world of blockchain technology. Our team created a secure cryptocurrency wallet using Web3, opening up the possibility for users to invest in real estate stocks via Ethereum.
+
+- **Streamlined User Experience:** The project culminated in the development of an intuitive Streamlit app. This user-friendly platform empowers investors to effortlessly select real estate stocks, visualize returns, and execute investments—all while harnessing the power of cryptocurrency.
+
+**Project Goal:**
+Our tool is designed to empower users with the ability to perform financial analysis on real estate stocks and visualize investment opportunities. By seamlessly integrating cryptocurrency into the investment process, we aim to provide a cutting-edge platform for informed decision-making in the dynamic world of real estate investments. Explore the future of real estate investment with our innovative tool, combining data analytics, machine learning, and blockchain technology for a holistic investment experience.
 
 ## Project Procedure
 
