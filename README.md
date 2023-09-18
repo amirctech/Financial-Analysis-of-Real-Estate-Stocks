@@ -25,7 +25,7 @@ The Financial Analysis in Real Estate Stocks project is dedicated to delivering 
 - **Streamlined User Experience:** The project culminated in the development of an intuitive Streamlit app. This user-friendly platform empowers investors to effortlessly select real estate stocks, visualize returns, and execute investments—all while harnessing the power of cryptocurrency.
 
 **Project Goal:**
-Our tool is designed to empower users with the ability to perform financial analysis on real estate stocks and visualize investment opportunities. By seamlessly integrating cryptocurrency into the investment process, we aim to provide a cutting-edge platform for informed decision-making in the dynamic world of real estate investments. Explore the future of real estate investment with our innovative tool, combining data analytics, machine learning, and blockchain technology for a holistic investment experience.
+Our tool is designed to empower users with the ability to perform financial analysis on real estate stocks and visualize investment opportunities. By seamlessly integrating cryptocurrency into the investment process, we aim to provide a cutting-edge platform for informed decision-making in the dynamic world of real estate stock investments. Explore the future of real estate stock investment with our innovative tool, combining data analytics, machine learning, and blockchain technology for a holistic investment experience.
 
 ## Project Procedure
 
