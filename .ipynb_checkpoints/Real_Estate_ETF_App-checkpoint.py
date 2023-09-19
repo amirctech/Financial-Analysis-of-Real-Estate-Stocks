@@ -52,6 +52,8 @@ if 'address' not in st.session_state:
     st.session_state.address = ""
 if 'transaction_hash' not in st.session_state:
     st.session_state.transaction_hash = ""
+if 'years' not in st.session_state:
+    st.session_state.years = ""
 if 'total' not in st.session_state:
     st.session_state.total = ""
     
@@ -199,11 +201,11 @@ def hash_view():
     st.markdown("# Review Transaction Hash Details")
     
     if st.button("View Transaction Details"):
-        st.write("Transaction Details for Investor")
-        st.write(f"Name of Investor: {st.session_state.name}")
+        st.markdown("## Transaction Details")
+        st.write(f"Name: {st.session_state.name}")
         st.write(f"Phone Number: {st.session_state.phone}")
         st.write(f"Address: {st.session_state.address}")
-        st.write(f"Total: {st.session_state.total}")
+        st.write(f"Total Ethereum: {st.session_state.total}")
         st.write(f"Years: {st.session_state.years}")
         st.write(f"Transaction Hash: {st.session_state.transaction_hash}")
 

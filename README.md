@@ -122,6 +122,9 @@ Follow these steps to utilize the Financial Analysis in Real Estate Stocks platf
 
 9. **Transaction Validation**
    - Ensure that the sidebar validates the transaction and displays the transaction hash. This hash serves as a confirmation of your investment in the real estate ETF.
+  
+9. **Financial Planner View**
+   - Navigate to the "Financial Planner Hash View" and click View Transaction Details to review the transaction hash details including Name of Investor, Phone Number, Address, Total Ethereum, Years, & Transaction Hash.
 
 By following these steps, you can effectively use the platform to analyze real estate stocks, make investment decisions, and conduct transactions securely via cryptocurrency.
 
