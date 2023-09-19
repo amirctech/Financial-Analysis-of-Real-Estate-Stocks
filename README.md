@@ -1,8 +1,8 @@
 ## Final Project Located in Files
 
-- Farmland Portfolio-CORN.ipynb
-- Commercial Portfolio-ICF.ipynb
-- Housing Portfolio-XLRE.ipynb
+- Farmland_ETF_Final.ipynb
+- Commercial_ETF_Final.ipynb
+- Housing_ETF_Final.ipynb
 - Crypto_Wallet.py
 - Real_Estate_ETF_App.py
 
