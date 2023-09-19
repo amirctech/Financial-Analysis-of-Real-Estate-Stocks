@@ -55,7 +55,10 @@ if 'transaction_hash' not in st.session_state:
 def descriptor():
     st.markdown("# REAL ESTATE ETF INVESTMENT APP")
     st.markdown("## Invest In Real Estate ETFs w/ Ethereum")
-    st.text("The Real Estate ETF Investment App displays comprehensive insights and investment opportunities in the real estate stock market.The financial analysis runs on the computation of algorithmic returns for three carefully chosen real estate stocks, each representing a distinct sector: agriculture, commercial, and housing. This initiative combines data-driven analysis, machine learning, and blockchain technology to empower investors with valuable tools and details that allow for high returns and profits.")
+    st.text('''
+    The Real Estate ETF Investment App displays comprehensive insights and investment opportunities in the real estate stock market.
+    The financial analysis runs on the computation of algorithmic returns for three carefully chosen real estate stocks, each representing a distinct sector: agriculture, commercial, and housing. 
+    This initiative combines data-driven analysis, machine learning, and blockchain technology to empower investors with valuable tools and details that allow for high returns and profits''')
     landing = Image.open('Images/real_estate_stock_landing_page.jpg')
     st.image(landing, caption='High rises overlayed with analytical graphs')
     
@@ -162,13 +165,11 @@ def main():
     st.sidebar.write('Years:', years)
 
     # Inside main()
-	st.session_state.name = st.sidebar.text_input("Name of Investor")
-	st.session_state.phone = st.sidebar.text_input("Phone Number")
-	st.session_state.address = st.sidebar.text_input("Address")
+    st.session_state.name = st.sidebar.text_input("Name of Investor")
+    st.session_state.phone = st.sidebar.text_input("Phone Number")
+    st.session_state.address = st.sidebar.text_input("Address")
 
-	# and for the transaction hash
-	if st.sidebar.button("Send Transaction"):
-		st.session_state.transaction_hash = send_transaction(w3, account, etfs_address, total, st.session_state.name, st.session_state.phone, st.session_state.address, years)
+    if st.sidebar.button("Send Transaction"):
         
         # Call the send_transaction function and pass it the necessary parameters
         transaction_hash = send_transaction(w3, account, etfs_address, total, name, phone, address, years)
@@ -188,6 +189,7 @@ def hash_view():
         st.write(f"Phone Number: {st.session_state.phone}")
         st.write(f"Address: {st.session_state.address}")
         st.write(f"Transaction Hash: {st.session_state.transaction_hash}")
+
 
 page_names_to_funcs = {
     "Real Estate ETF App Breakdown": descriptor,

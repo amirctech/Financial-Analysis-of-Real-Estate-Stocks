@@ -1,19 +1,10 @@
 import streamlit as st
 import pandas as pd
-from Crypto_Wallet import generate_account, get_balance, send_transaction  # Import necessary functions
+from Crypto_Wallet import *
 from typing import Any, List
 from web3 import Web3
 from PIL import Image
-
-# Define global variables to store input values
 w3 = Web3(Web3.HTTPProvider("HTTP://127.0.0.1:7545"))
-account = None
-etfs_address = None
-total = None
-name = None
-phone = None
-address = None
-years = None
 
 # Load your CSV data
 icf_returns_df = pd.read_csv("ICF_Cumulative_Df.csv")
@@ -49,6 +40,16 @@ etf_database = {
 # Create a list of ETF names
 etfs = list(etf_database.keys())
 
+# New session state variables - global
+if 'name' not in st.session_state:
+    st.session_state.name = ""
+if 'phone' not in st.session_state:
+    st.session_state.phone = ""
+if 'address' not in st.session_state:
+    st.session_state.address = ""
+if 'transaction_hash' not in st.session_state:
+    st.session_state.transaction_hash = ""
+
 # Streamlit app
 
 def descriptor():
@@ -57,15 +58,15 @@ def descriptor():
     st.text("The Real Estate ETF Investment App displays comprehensive insights and investment opportunities in the real estate stock market.The financial analysis runs on the computation of algorithmic returns for three carefully chosen real estate stocks, each representing a distinct sector: agriculture, commercial, and housing. This initiative combines data-driven analysis, machine learning, and blockchain technology to empower investors with valuable tools and details that allow for high returns and profits.")
     landing = Image.open('Images/real_estate_stock_landing_page.jpg')
     st.image(landing, caption='High rises overlayed with analytical graphs')
-
-def main():
-    global account, etfs_address, total, name, phone, address, years  # Make these global
     
+# Define globnal variables to store input values
+def main():
     # Streamlit application headings
     st.markdown("# RealEstateETFApp")
     st.markdown("## Invest In Real Estate ETFs")
     st.text(" \n")
    
+    
     # Display ETF details 
     selected_etf = st.selectbox("Select an ETF", etfs)
     etf_details = etf_database[selected_etf]
@@ -160,8 +161,14 @@ def main():
     # Write the number of years to the side bar
     st.sidebar.write('Years:', years)
 
-    # Save the transaction hash that the 'send_transaction' function returns as a variable and have it display on the application's web interface
-    if st.sidebar.button("Send Transaction"):
+    # Inside main()
+	st.session_state.name = st.sidebar.text_input("Name of Investor")
+	st.session_state.phone = st.sidebar.text_input("Phone Number")
+	st.session_state.address = st.sidebar.text_input("Address")
+
+	# and for the transaction hash
+	if st.sidebar.button("Send Transaction"):
+		st.session_state.transaction_hash = send_transaction(w3, account, etfs_address, total, st.session_state.name, st.session_state.phone, st.session_state.address, years)
         
         # Call the send_transaction function and pass it the necessary parameters
         transaction_hash = send_transaction(w3, account, etfs_address, total, name, phone, address, years)
@@ -172,15 +179,15 @@ def main():
         # Write the returned transaction hash to the screen
         st.sidebar.write(transaction_hash)
 
-def hash_view(w3, account, etfs_address, total, name, phone, address, year):
+def hash_view():
     st.markdown("# Review Transaction Hash Details")
     
     if st.button("View Transaction Details"):
         st.write("Transaction Details for Investor")
-        st.write(f"Name of Investor: {name}")
-        st.write(f"Phone Number: {phone}")
-        st.write(f"Address: {address}")
-        st.write(f"Transaction Hash: {transaction_hash}")
+        st.write(f"Name of Investor: {st.session_state.name}")
+        st.write(f"Phone Number: {st.session_state.phone}")
+        st.write(f"Address: {st.session_state.address}")
+        st.write(f"Transaction Hash: {st.session_state.transaction_hash}")
 
 page_names_to_funcs = {
     "Real Estate ETF App Breakdown": descriptor,

@@ -11,6 +11,9 @@ icf_returns_df = pd.read_csv("ICF_Cumulative_Df.csv")
 icf_aglo_evaluation_df = pd.read_csv("ICF_Algo_Evaluation_Df.csv")
 corn_returns_df = pd.read_csv("Farmland_ETF_Returns.csv")
 corn_algo_evaluation_df = pd.read_csv("Farmland_Backtest.csv")
+xlre_returns_df = pd.read_csv("XLRE_Returns_Df.csv")
+xlre_algo_evaluation_df = pd.read_csv("XLRE_Backtest.csv")
+
 
 # Define ETFs and their details
 etf_database = {
@@ -33,19 +36,35 @@ etf_database = {
         "Ethereum ETF Address": "0xd4008409A7dFEdc20Af7CdD22c9FD6EaFAe48D97",
         "Cumulative Returns": -0.161367,
         "Closing Price": 0.02239939602606963,
-        "Image": "Images/commercial_realestate.jpg"
+        "Image": "Images/housing_realestate.jpg"
     }
 }
 
 # Create a list of ETF names
 etfs = list(etf_database.keys())
 
+# New session state variables - global
+if 'name' not in st.session_state:
+    st.session_state.name = ""
+if 'phone' not in st.session_state:
+    st.session_state.phone = ""
+if 'address' not in st.session_state:
+    st.session_state.address = ""
+if 'transaction_hash' not in st.session_state:
+    st.session_state.transaction_hash = ""
+if 'total' not in st.session_state:
+    st.session_state.total = ""
+    
 # Streamlit app
 
 def descriptor():
     st.markdown("# REAL ESTATE ETF INVESTMENT APP")
     st.markdown("## Invest In Real Estate ETFs w/ Ethereum")
-    st.text("The Real Estate ETF Investment App displays comprehensive insights and investment opportunities in the real estate stock market.The financial analysis runs on the computation of algorithmic returns for three carefully chosen real estate stocks, each representing a distinct sector: agriculture, commercial, and housing. This initiative combines data-driven analysis, machine learning, and blockchain technology to empower investors with valuable tools and details that allow for high returns and profits.")
+    st.text('''
+    The Real Estate ETF Investment App displays comprehensive insights and investment opportunities in the real estate stock market.
+    The financial analysis runs on the computation of algorithmic returns for three carefully chosen real estate stocks, each representing a distinct sector: agriculture, commercial, and housing. 
+    This initiative combines data-driven analysis, machine learning, and blockchain technology to empower investors with valuable tools and details that allow for high returns and profits.
+    ''')
     landing = Image.open('Images/real_estate_stock_landing_page.jpg')
     st.image(landing, caption='High rises overlayed with analytical graphs')
     
@@ -70,6 +89,7 @@ def main():
     # Set the Google Finance URLs
     url_icf = "https://www.google.com/finance/quote/ICF:BATS?sa=X&sqi=2&ved=2ahUKEwibwaqC-K2BAxUBkIkEHXgGBVgQ3ecFegQIGhAf"
     url_corn = "https://www.google.com/finance/quote/CORN:NYSEARCA?sa=X&ved=2ahUKEwiE7L-t-q2BAxXGJTQIHfqvDksQ3ecFegQIFxAf"
+    url_xlre = "https://www.google.com/finance/quote/XLRE:NYSEARCA?sa=X&ved=2ahUKEwjXzKqMt7WBAxXGjokEHVzpAyoQ3ecFegQIHBAf"
     
     # Create buttons to show analysis
     if st.button("Show Financial Analysis"):
@@ -86,6 +106,12 @@ def main():
             st.markdown("CORN Returns 2018-11-19 to 2023-03-27 $")
             st.line_chart(corn_returns_df)
             st.markdown("Checkout [Google Finance CORN Breakdown](%s)" % url_corn)
+        elif selected_etf == "XLRE: Housing Real Estate":
+            st.markdown("XLRE Financial Evaluation Metrics")
+            st.table(xlre_algo_evaluation_df)
+            st.markdown("XLRE Returns 2018-11-19 to 2023-03-27 $")
+            st.line_chart(xlre_returns_df)
+            st.markdown("Checkout [Google Finance XLRE Breakdown](%s)" % url_xlre)
         
     # Streamlit Sidebar Code - Start
     st.sidebar.markdown("## ETF Account Addresses & Ethernet Balance in Ether")
@@ -102,13 +128,6 @@ def main():
     # Use the 'balance' variable
     balance = get_balance(w3,account.address)
     st.sidebar.write(balance)
-    
-    # Create a input_text area for the investors name
-    name = st.sidebar.text_input("Name of Investor")
-    
-    phone = st.sidebar.text_input("Phone Number")
-    
-    address = st.sidebar.text_input("Address")
     
     # Create a select box to choose a Real Estate ETF
     selected_etf_sidebar = st.sidebar.selectbox("Select a Real Estate ETF", etfs)
@@ -140,38 +159,53 @@ def main():
     st.sidebar.markdown("## Total Shares in Ether")
 
     # Calcualte total shares in eth for the ETF
-    total = etf_details["Closing Price"] * shares
+    st.session_state.total = etf_details["Closing Price"] * shares
     
     # Write the 'total' calculation to the Streamlit sidebar
-    st.sidebar.write(total)
+    st.sidebar.write(st.session_state.total)
     
     # Create a slider to select the number of years to invest
-    years = st.sidebar.slider('How many years would you like to invest?', 0, 5)
+    # years = st.sidebar.slider('How many years would you like to invest?', 0, 5)
     
     # Write the number of years to the side bar
-    st.sidebar.write('Years:', years)
-
+    # st.sidebar.write('Years:', years)
+# Inside main()
+    st.session_state.name = st.sidebar.text_input("Name of Investor")
+    st.session_state.phone = st.sidebar.text_input("Phone Number")
+    st.session_state.address = st.sidebar.text_input("Address")
+    st.session_state.years = st.sidebar.slider("How many years would you like to invest?", 0,5)
+    name = st.session_state.name
+    phone = st.session_state.phone
+    address = st.session_state.address
+    years = st.session_state.years
+    total = st.session_state.total
+    
     # Save the transaction hash that the 'send_transaction' function returns as a variable and have it display on the application's web interface
     if st.sidebar.button("Send Transaction"):
         
         # Call the send_transaction function and pass it the necessary parameters
-        transaction_hash = send_transaction(w3, account, etfs_address, total, name, phone, address, years)
+        st.session_state.transaction_hash = send_transaction(w3, account, etfs_address, total, name, phone, address, years)
         
         # Markdown for the transaction hash
         st.sidebar.markdown("#### Validated Transaction Hash")
         
         # Write the returned transaction hash to the screen
-        st.sidebar.write(transaction_hash)
+        st.sidebar.write(st.session_state.transaction_hash)
+        
+        #Call hash_view
+        #hash_view()
 
-def hash_view(name, phone, address, transaction_hash):
+def hash_view():
     st.markdown("# Review Transaction Hash Details")
     
     if st.button("View Transaction Details"):
         st.write("Transaction Details for Investor")
-        st.write(f"Name of Investor: {name}")
-        st.write(f"Phone Number: {phone}")
-        st.write(f"Address: {address}")
-        st.write(f"Transaction Hash: {transaction_hash}")
+        st.write(f"Name of Investor: {st.session_state.name}")
+        st.write(f"Phone Number: {st.session_state.phone}")
+        st.write(f"Address: {st.session_state.address}")
+        st.write(f"Total: {st.session_state.total}")
+        st.write(f"Years: {st.session_state.years}")
+        st.write(f"Transaction Hash: {st.session_state.transaction_hash}")
 
 page_names_to_funcs = {
     "Real Estate ETF App Breakdown": descriptor,
