@@ -132,7 +132,6 @@ By following these steps, you can effectively use the platform to analyze real e
 
 ## Next Steps
 
-- Financial Planner tab that visualizes the details of each transaction
 - Live conversion of Dollars to Cryptocurrency for the returns & metrics
 - More interactive visuals and components of the streamlit app
 - Creating a side by side or comparison view of each of the real estate stocks
