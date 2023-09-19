@@ -136,3 +136,4 @@ By following these steps, you can effectively use the platform to analyze real e
 - More interactive visuals and components of the streamlit app
 - Creating a side by side or comparison view of each of the real estate stocks
 - Different machine learning models to increase the returns of each stock
+- Create a feedback or cash out loop after the end of the investment term
