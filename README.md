@@ -130,16 +130,20 @@ By following these steps, you can effectively use the platform to analyze real e
 
 ## Images & Visuals
 
-Real Estate ETF App Breakdown Page
+**Real Estate ETF App Breakdown Page**
+
 ![REALESTATEETFAPPDESCRIPTIONPAGE](https://github.com/amirctech/Financial-Analysis-of-Real-Estate-Stocks/assets/122631183/2c01471a-eb75-415f-b6ae-6570ad8a68d1)
 
-Real Estate ETF App Stock Selection Panel
+**Real Estate ETF App Stock Selection Panel**
+
 ![REALESTATEETFAPPSELECTIONPANEL](https://github.com/amirctech/Financial-Analysis-of-Real-Estate-Stocks/assets/122631183/609c25c0-d97b-4f8b-aa88-32cab51ef5d9)
 
-Real Estate ETF App Investment Side Bar
+**Real Estate ETF App Investment Side Bar**
+
 ![REALESTATEETFAPPINVESTMENTPANEL](https://github.com/amirctech/Financial-Analysis-of-Real-Estate-Stocks/assets/122631183/c48df342-535b-4c18-a147-377e37179d93)
 
-Real Estate ETF App Investment Financial Planner Hash View
+**Real Estate ETF App Investment Financial Planner Hash View**
+
 ![REALESTATEETFAPPTRANSACTIONHASHPAGE](https://github.com/amirctech/Financial-Analysis-of-Real-Estate-Stocks/assets/122631183/7b3c2160-ad73-4d00-859f-7878cc1227da)
 
 ## Next Steps
