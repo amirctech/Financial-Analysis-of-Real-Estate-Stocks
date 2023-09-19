@@ -130,6 +130,20 @@ By following these steps, you can effectively use the platform to analyze real e
 
 ## Images & Visuals
 
+**Real Estate ETF Machine Learning Model Results**
+- ! [CORN: Logistic Regression Classification Report](Images/CORNCLASSIFACTIONREPORT.jpg)
+- ! [CORN: Logistic Regression Algorithmic Returns](Images/CORNALGORETURNS.jpg)
+- ! [CORN: Logistic Regression Algorithmic Returns Plot](Images/CORNALGORETURNSPLOT.jpg)
+- ! [CORN: Financial Evaluation Metrics](Images/CORNBACKTEST.jpg)
+- ! [ICF: Logistic Regression Classification Report](Images/ICFCLASSIFACTIONREPORT.jpg)
+- ! [ICF: Logistic Regression Algorithmic Returns](Images/ICFALGORETURNS.jpg)
+- ! [ICF: Logistic Regression Algorithmic Returns Plot](Images/ICFALGORETURNSPLOT.jpg)
+- ! [ICF: Financial Evaluation Metrics](Images/ICFBACKTEST.jpg)
+- ! [XLRE: Logistic Regression Classification Report](Images/XLRECLASSIFACTIONREPORT.jpg)
+- ! [XLRE: Logistic Regression Algorithmic Returns](Images/XLREALGORETURNS.jpg)
+- ! [XLRE: Logistic Regression Algorithmic Returns Plot](Images/XLREALGORETURNSPLOT.jpg)
+- ! [XLRE: Financial Evaluation Metrics](Images/XLREBACKTEST.jpg)
+
 **Real Estate ETF App Breakdown Page**
 
 ![REALESTATEETFAPPDESCRIPTIONPAGE](https://github.com/amirctech/Financial-Analysis-of-Real-Estate-Stocks/assets/122631183/2c01471a-eb75-415f-b6ae-6570ad8a68d1)
