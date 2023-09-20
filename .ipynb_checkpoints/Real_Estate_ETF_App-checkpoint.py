@@ -58,6 +58,8 @@ if 'total' not in st.session_state:
     st.session_state.total = ""
 if 'etfname' not in st.session_state:
     st.session_state.etfname = ""
+if 'etf_details' not in st.session_state:
+    st.session_state.etf_details = ""
     
 # Streamlit app
 
@@ -72,32 +74,30 @@ def descriptor():
     landing = Image.open('Images/real_estate_stock_landing_page.jpg')
     st.image(landing, caption='High rises overlayed with analytical graphs')
     
-# Define globnal variables to store input values
 def main():
     # Streamlit application headings
     st.markdown("# RealEstateETFApp")
     st.markdown("## Invest In Real Estate ETFs")
     st.text(" \n")
-   
-    
-    # Display ETF details 
+
+    # Display ETF details
     selected_etf = st.selectbox("Select an ETF", etfs)
-    etf_details = etf_database[selected_etf]
-    
-    st.image(etf_details["Image"], width=200)
-    st.write("Name:", etf_details["Name"])
-    st.write("Ethereum ETF Address:", etf_details["Ethereum ETF Address"])
-    st.write(f"Cumulative Returns: {etf_details['Cumulative Returns']:.6f}")
-    st.write(f"Current Price Per Share: {etf_details['Closing Price']} eth")
-    
+    st.session_state.etf_details = etf_database[selected_etf]
+
+    st.image(st.session_state.etf_details["Image"], width=200)
+    st.write("Name:", st.session_state.etf_details["Name"])
+    st.write("Ethereum ETF Address:", st.session_state.etf_details["Ethereum ETF Address"])
+    st.write(f"Cumulative Returns: {st.session_state.etf_details['Cumulative Returns']:.6f}")
+    st.write(f"Current Price Per Share: {st.session_state.etf_details['Closing Price']} eth")
+
     # Set the Google Finance URLs
     url_icf = "https://www.google.com/finance/quote/ICF:BATS?sa=X&sqi=2&ved=2ahUKEwibwaqC-K2BAxUBkIkEHXgGBVgQ3ecFegQIGhAf"
     url_corn = "https://www.google.com/finance/quote/CORN:NYSEARCA?sa=X&ved=2ahUKEwiE7L-t-q2BAxXGJTQIHfqvDksQ3ecFegQIFxAf"
     url_xlre = "https://www.google.com/finance/quote/XLRE:NYSEARCA?sa=X&ved=2ahUKEwjXzKqMt7WBAxXGjokEHVzpAyoQ3ecFegQIHBAf"
-    
+
     # Create buttons to show analysis
     if st.button("Show Financial Analysis"):
-        st.write(f"Financial Analysis for {etf_details['Name']}")
+        st.write(f"Financial Analysis for {st.session_state.etf_details['Name']}")
         if selected_etf == "ICF: Commercial Real Estate":
             st.markdown("ICF Financial Evaluation Metrics")
             st.table(icf_aglo_evaluation_df)
@@ -116,64 +116,62 @@ def main():
             st.markdown("XLRE Returns 2018-11-19 to 2023-03-27 $")
             st.line_chart(xlre_returns_df)
             st.markdown("Checkout [Google Finance XLRE Breakdown](%s)" % url_xlre)
-        
+
     # Streamlit Sidebar Code - Start
     st.sidebar.markdown("## ETF Account Addresses & Ethernet Balance in Ether")
-    
+
     # Call the 'generate_account' function and save it as the variable 'account'
     account = generate_account()
-    
+
     # Write the client's Ethereum account address to the sidebar
     # Use the 'account' variable
     st.sidebar.write(account.address)
-    
+
     # Call the 'get_balance' function and pass it your account address
     # Write the returned ether balance to the sidebar
     # Use the 'balance' variable
-    balance = get_balance(w3,account.address)
+    balance = get_balance(w3, account.address)
     st.sidebar.write(balance)
-    
+
     # Create a select box to choose a Real Estate ETF
     selected_etf_sidebar = st.sidebar.selectbox("Select a Real Estate ETF", etfs)
-    
+
+    # Add an event handler to update etfname based on the selected ETF
+    if st.session_state.etfname != selected_etf_sidebar:
+        st.session_state.etfname = selected_etf_sidebar
+
     # Create an input field to record the number of shares requested
     shares = st.sidebar.number_input("Number of Shares")
-    
+
     st.sidebar.markdown("## Real Estate ETF Name, Price per Share, & Ethereum Address")
-    
+
     # Identify the Real Estate ETF
-    st.session_state.etfname = etf_details["Name"]
-    
+    st.session_state.etfname = st.session_state.etf_details["Name"]
+
     # Write the Real Estate ETF's name to the sidebar
     st.sidebar.write(st.session_state.etfname)
-    
+
     # Identify the Real Estate ETF's closing price
-    closing_price = etf_details["Closing Price"]
-    
+    closing_price = st.session_state.etf_details["Closing Price"]
+
     # Write the closing price to the sidebar
     st.sidebar.write(closing_price)
-    
+
     # Identify the Real Estate ETF's Ethereum Address
-    etfs_address = etf_details["Ethereum ETF Address"]
-    
+    etfs_address = st.session_state.etf_details["Ethereum ETF Address"]
+
     # Write the ETF's Ethereum Address to the sidebar
     st.sidebar.write(etfs_address)
-    
+
     # Write the total shares in Ether
     st.sidebar.markdown("## Total Shares in Ether")
 
-    # Calcualte total shares in eth for the ETF
-    st.session_state.total = etf_details["Closing Price"] * shares
-    
+    # Calculate total shares in eth for the ETF
+    st.session_state.total = st.session_state.etf_details["Closing Price"] * shares
+
     # Write the 'total' calculation to the Streamlit sidebar
     st.sidebar.write(st.session_state.total)
-    
-    # Create a slider to select the number of years to invest
-    # years = st.sidebar.slider('How many years would you like to invest?', 0, 5)
-    
-    # Write the number of years to the side bar
-    # st.sidebar.write('Years:', years)
-# Inside main()
+
     st.session_state.name = st.sidebar.text_input("Name of Investor")
     st.session_state.phone = st.sidebar.text_input("Phone Number")
     st.session_state.address = st.sidebar.text_input("Address")
