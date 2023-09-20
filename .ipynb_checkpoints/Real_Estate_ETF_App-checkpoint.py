@@ -56,6 +56,8 @@ if 'years' not in st.session_state:
     st.session_state.years = ""
 if 'total' not in st.session_state:
     st.session_state.total = ""
+if 'etfname' not in st.session_state:
+    st.session_state.etfname = ""
     
 # Streamlit app
 
@@ -140,10 +142,10 @@ def main():
     st.sidebar.markdown("## Real Estate ETF Name, Price per Share, & Ethereum Address")
     
     # Identify the Real Estate ETF
-    etfname = etf_details["Name"]
+    st.session_state.etfname = etf_details["Name"]
     
     # Write the Real Estate ETF's name to the sidebar
-    st.sidebar.write(etfname)
+    st.sidebar.write(st.session_state.etfname)
     
     # Identify the Real Estate ETF's closing price
     closing_price = etf_details["Closing Price"]
@@ -178,6 +180,7 @@ def main():
     st.session_state.years = st.sidebar.slider("How many years would you like to invest?", 0,5)
     name = st.session_state.name
     phone = st.session_state.phone
+    etfname = st.session_state.etfname
     address = st.session_state.address
     years = st.session_state.years
     total = st.session_state.total
@@ -204,6 +207,7 @@ def hash_view():
         st.markdown("## Transaction Details")
         st.write(f"Name: {st.session_state.name}")
         st.write(f"Phone Number: {st.session_state.phone}")
+        st.write(f"ETF: {st.session_state.etfname}")
         st.write(f"Address: {st.session_state.address}")
         st.write(f"Total Ethereum: {st.session_state.total}")
         st.write(f"Years: {st.session_state.years}")
